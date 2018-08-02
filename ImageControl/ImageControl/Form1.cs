@@ -28,7 +28,7 @@ namespace ImageControl
             ScegliImmagine(PBPixel, LBPixel);
         }
 
-        private void ScegliImmagine(PictureBox picture, Label nome)
+        private void ScegliImmagine(PictureBox picture, Label name)
         {
             var dialog = new OpenFileDialog();
 
@@ -40,7 +40,7 @@ namespace ImageControl
             {
                 var image = Image.FromFile(dialog.FileName);
                 picture.Image = image;
-                nome.Text = ((dialog.FileName.Split('\\'))[dialog.FileName.Split('\\').Length - 1]).Split('.')[0];
+                name.Text = ((dialog.FileName.Split('\\'))[dialog.FileName.Split('\\').Length - 1]).Split('.')[0];
             }
         }
 
