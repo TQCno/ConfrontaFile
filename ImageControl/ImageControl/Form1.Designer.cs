@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.BTNVerifica = new System.Windows.Forms.Button();
             this.PBPalette = new System.Windows.Forms.PictureBox();
             this.PBPixel = new System.Windows.Forms.PictureBox();
             this.LBPalette = new System.Windows.Forms.Label();
@@ -37,15 +37,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.PBPixel)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // BTNVerifica
             // 
-            this.button1.Location = new System.Drawing.Point(397, 264);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 35);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Verifica";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BTNVerifica.Location = new System.Drawing.Point(397, 264);
+            this.BTNVerifica.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BTNVerifica.Name = "BTNVerifica";
+            this.BTNVerifica.Size = new System.Drawing.Size(112, 35);
+            this.BTNVerifica.TabIndex = 0;
+            this.BTNVerifica.Text = "Verifica";
+            this.BTNVerifica.UseVisualStyleBackColor = true;
+            this.BTNVerifica.Click += new System.EventHandler(this.BTNVerifica_Click);
             // 
             // PBPalette
             // 
@@ -54,7 +55,7 @@
             this.PBPalette.Location = new System.Drawing.Point(12, 12);
             this.PBPalette.Name = "PBPalette";
             this.PBPalette.Size = new System.Drawing.Size(190, 185);
-            this.PBPalette.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PBPalette.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PBPalette.TabIndex = 1;
             this.PBPalette.TabStop = false;
             this.PBPalette.Click += new System.EventHandler(this.PBPalette_Click);
@@ -96,7 +97,7 @@
             this.Controls.Add(this.LBPalette);
             this.Controls.Add(this.PBPixel);
             this.Controls.Add(this.PBPalette);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BTNVerifica);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
@@ -110,7 +111,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BTNVerifica;
         private System.Windows.Forms.PictureBox PBPalette;
         private System.Windows.Forms.PictureBox PBPixel;
         private System.Windows.Forms.Label LBPalette;

@@ -20,15 +20,18 @@ namespace ImageControl
         private void PBPalette_Click(object sender, EventArgs e)
         {
             Funzioni.ScegliImmagine(PBPalette, LBPalette);
+            BTNVerifica.BackColor = Color.Gray;
         }
 
         private void PBPixel_Click(object sender, EventArgs e)
         {
             Funzioni.ScegliImmagine(PBPixel, LBPixel);
+            BTNVerifica.BackColor = Color.Gray;
         }
 
-
-
-
+        private void BTNVerifica_Click(object sender, EventArgs e)
+        {
+            Funzioni.Verifica(BTNVerifica, PBPalette);
+        }
     }
 }
