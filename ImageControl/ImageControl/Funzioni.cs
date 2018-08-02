@@ -11,7 +11,7 @@ namespace ImageControl
 {
     class Funzioni
     {
-        public void ScegliImmagine(PictureBox picture, Label name)
+        public static void ScegliImmagine(PictureBox picture, Label name)
         {
             var dialog = new OpenFileDialog();
 
