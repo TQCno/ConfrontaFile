@@ -6,11 +6,27 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 
-
 namespace ImageControl
 {
     class Funzioni
     {
+
+        public bool isInside(Bitmap palette, Color color)
+        {
+            int sizeW = palette.Width;
+            int sizeH = palette.Height;
+
+            for (int i = 0; i < sizeH; i++)
+            {
+                for (int j = 0; j < sizeW; j++)
+                {
+                    if (palette.GetPixel(j, i) == color) return true;
+                }
+            }
+
+            return false;
+        }
+
         public static void ScegliImmagine(PictureBox picture, Label name)
         {
             var dialog = new OpenFileDialog();
@@ -26,5 +42,7 @@ namespace ImageControl
                 name.Text = ((dialog.FileName.Split('\\'))[dialog.FileName.Split('\\').Length - 1]).Split('.')[0];
             }
         }
+
     }
+    
 }
