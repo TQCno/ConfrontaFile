@@ -5,68 +5,56 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ImageControl
 {
     class Funzioni
     {
-        private static bool IsInside(Bitmap palette, Color color)
+
+        public static void SelectFolder(ComboBox cb, List<Extension> extensions, bool cleatList)
         {
-            int sizeW = palette.Width;
-            int sizeH = palette.Height;
-            var argb = color.ToArgb();
-
-            for (int i = 0; i < sizeH; i++)
+            using (var folderBD = new FolderBrowserDialog())
             {
-                for (int j = 0; j < sizeW; j++)
+                DialogResult result = folderBD.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBD.SelectedPath))
                 {
-                    var colore = palette.GetPixel(j, i).ToArgb();
-                    if (colore == argb) return true;
-                }
-            }
-
-            return false;
-        }
-
-        public static void ScegliImmagine(PictureBox picture, Label name)
-        {
-            var dialog = new OpenFileDialog();
-
-            dialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.bmp, *.png) | *.jpg; *.jpeg; *.jpe; *.bmp; *.png";
-            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            dialog.Multiselect = false;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                var image = Image.FromFile(dialog.FileName);
-                picture.Image = image;
-                name.Text = ((dialog.FileName.Split('\\'))[dialog.FileName.Split('\\').Length - 1]).Split('.')[0];
-            }
-        }
-
-        public static void Verifica(Button btn, PictureBox pbPalette)
-        {
-            if (pbPalette.Image == null) { return; }
-
-            var dialog = new ColorDialog();
-            var color = Color.White;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                color = dialog.Color;
-
-                if (IsInside(new Bitmap(pbPalette.Image), color))
-                {
-                    btn.BackColor = Color.Green;
-                }
-                else
-                {
-                    btn.BackColor = Color.Red;
+                    if (cleatList) { Data.FolderPaths.Clear(); }
+                    Data.FolderPaths.Add(folderBD.SelectedPath);
+                    AddNames(cb, extensions);
                 }
             }
         }
 
+        public static void AddNames(ComboBox cb, List<Extension> extensions)
+        {
+            var paths = Directory.GetFiles(Data.FolderPaths[Data.FolderPaths.Count - 1]);
 
+            foreach (var path in paths)
+            {
+                bool find = false;
+                foreach (var extension in extensions) { if (extension.ToString() == Path.GetExtension(path)) { find = true; break; } }
+                if (!find) { continue; }
+                cb.Items.Add(Path.GetFileName(path));
+            }
+
+            if (paths.Length > 0 && cb.SelectedIndex < 0) { cb.SelectedIndex = 0; }
+        }
+
+        public static bool GetExtensions(CheckBox png, CheckBox jpg, CheckBox btm, List<Extension> extensions)
+        {
+            bool bPng = png.Checked, bJpg = jpg.Checked, bBtm = btm.Checked;
+
+            if (!bPng && !bPng && !bBtm) { return false; }
+            extensions = new List<Extension>();
+
+            if (bPng) { extensions.Add(new Extension(Ext.PNG)); }
+            if (bJpg) { extensions.Add(new Extension(Ext.JPG)); }
+            if (bBtm) { extensions.Add(new Extension(Ext.BTM)); }
+
+            return true;
+        }
     }
 
 }

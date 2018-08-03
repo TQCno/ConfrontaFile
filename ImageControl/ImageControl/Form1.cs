@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,21 +18,20 @@ namespace ImageControl
             InitializeComponent();
         }
 
-        private void PBPalette_Click(object sender, EventArgs e)
+        private void BTNSelezionaCartella_Click(object sender, EventArgs e)
         {
-            Funzioni.ScegliImmagine(PBPalette, LBPalette);
-            BTNVerifica.BackColor = Color.Gray;
+            var extensions = new List<Extension>();
+            var ok = Funzioni.GetExtensions(CBPNG, CBJPG, CBBMP, extensions);
+            if (!ok) { MessageBox.Show("Errore, selezionare almeno un'estenzione", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            Funzioni.SelectFolder(CBNames, extensions, false);
         }
 
-        private void PBPixel_Click(object sender, EventArgs e)
+        private void BTNAggiungiCartella_Click(object sender, EventArgs e)
         {
-            Funzioni.ScegliImmagine(PBPixel, LBPixel);
-            BTNVerifica.BackColor = Color.Gray;
-        }
-
-        private void BTNVerifica_Click(object sender, EventArgs e)
-        {
-            Funzioni.Verifica(BTNVerifica, PBPalette);
+            var extensions = new List<Extension>();
+            var ok = Funzioni.GetExtensions(CBPNG, CBJPG, CBBMP, extensions);
+            if (!ok) { MessageBox.Show("Errore, selezionare almeno un'estenzione", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            Funzioni.SelectFolder(CBNames, extensions, true);
         }
     }
 }

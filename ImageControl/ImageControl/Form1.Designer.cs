@@ -28,82 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BTNVerifica = new System.Windows.Forms.Button();
-            this.PBPalette = new System.Windows.Forms.PictureBox();
-            this.PBPixel = new System.Windows.Forms.PictureBox();
-            this.LBPalette = new System.Windows.Forms.Label();
-            this.LBPixel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.PBPalette)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBPixel)).BeginInit();
+            this.BTNSelezionaCartella = new System.Windows.Forms.Button();
+            this.CBNames = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CBPNG = new System.Windows.Forms.CheckBox();
+            this.BTNAggiungiCartella = new System.Windows.Forms.Button();
+            this.CBBMP = new System.Windows.Forms.CheckBox();
+            this.CBJPG = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // BTNVerifica
+            // BTNSelezionaCartella
             // 
-            this.BTNVerifica.Location = new System.Drawing.Point(397, 264);
-            this.BTNVerifica.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BTNVerifica.Name = "BTNVerifica";
-            this.BTNVerifica.Size = new System.Drawing.Size(112, 35);
-            this.BTNVerifica.TabIndex = 0;
-            this.BTNVerifica.Text = "Verifica";
-            this.BTNVerifica.UseVisualStyleBackColor = true;
-            this.BTNVerifica.Click += new System.EventHandler(this.BTNVerifica_Click);
+            this.BTNSelezionaCartella.Location = new System.Drawing.Point(12, 12);
+            this.BTNSelezionaCartella.Name = "BTNSelezionaCartella";
+            this.BTNSelezionaCartella.Size = new System.Drawing.Size(147, 34);
+            this.BTNSelezionaCartella.TabIndex = 0;
+            this.BTNSelezionaCartella.Text = "Seleziona cartella";
+            this.BTNSelezionaCartella.UseVisualStyleBackColor = true;
+            this.BTNSelezionaCartella.Click += new System.EventHandler(this.BTNSelezionaCartella_Click);
             // 
-            // PBPalette
+            // CBNames
             // 
-            this.PBPalette.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.PBPalette.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PBPalette.Location = new System.Drawing.Point(12, 12);
-            this.PBPalette.Name = "PBPalette";
-            this.PBPalette.Size = new System.Drawing.Size(190, 185);
-            this.PBPalette.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PBPalette.TabIndex = 1;
-            this.PBPalette.TabStop = false;
-            this.PBPalette.Click += new System.EventHandler(this.PBPalette_Click);
+            this.CBNames.FormattingEnabled = true;
+            this.CBNames.Location = new System.Drawing.Point(64, 62);
+            this.CBNames.Name = "CBNames";
+            this.CBNames.Size = new System.Drawing.Size(366, 28);
+            this.CBNames.Sorted = true;
+            this.CBNames.TabIndex = 1;
             // 
-            // PBPixel
+            // label1
             // 
-            this.PBPixel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.PBPixel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PBPixel.Location = new System.Drawing.Point(320, 12);
-            this.PBPixel.Name = "PBPixel";
-            this.PBPixel.Size = new System.Drawing.Size(190, 185);
-            this.PBPixel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PBPixel.TabIndex = 2;
-            this.PBPixel.TabStop = false;
-            this.PBPixel.Click += new System.EventHandler(this.PBPixel_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 70);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Files:";
             // 
-            // LBPalette
+            // CBPNG
             // 
-            this.LBPalette.AutoSize = true;
-            this.LBPalette.Location = new System.Drawing.Point(12, 200);
-            this.LBPalette.Name = "LBPalette";
-            this.LBPalette.Size = new System.Drawing.Size(0, 20);
-            this.LBPalette.TabIndex = 3;
+            this.CBPNG.AutoSize = true;
+            this.CBPNG.Checked = true;
+            this.CBPNG.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CBPNG.Location = new System.Drawing.Point(339, 18);
+            this.CBPNG.Name = "CBPNG";
+            this.CBPNG.Size = new System.Drawing.Size(62, 24);
+            this.CBPNG.TabIndex = 4;
+            this.CBPNG.Text = "PNG";
+            this.CBPNG.UseVisualStyleBackColor = true;
             // 
-            // LBPixel
+            // BTNAggiungiCartella
             // 
-            this.LBPixel.AutoSize = true;
-            this.LBPixel.Location = new System.Drawing.Point(316, 200);
-            this.LBPixel.Name = "LBPixel";
-            this.LBPixel.Size = new System.Drawing.Size(0, 20);
-            this.LBPixel.TabIndex = 4;
+            this.BTNAggiungiCartella.Location = new System.Drawing.Point(165, 12);
+            this.BTNAggiungiCartella.Name = "BTNAggiungiCartella";
+            this.BTNAggiungiCartella.Size = new System.Drawing.Size(147, 34);
+            this.BTNAggiungiCartella.TabIndex = 5;
+            this.BTNAggiungiCartella.Text = "AggiungiCartella";
+            this.BTNAggiungiCartella.UseVisualStyleBackColor = true;
+            this.BTNAggiungiCartella.Click += new System.EventHandler(this.BTNAggiungiCartella_Click);
+            // 
+            // CBBMP
+            // 
+            this.CBBMP.AutoSize = true;
+            this.CBBMP.Location = new System.Drawing.Point(407, 18);
+            this.CBBMP.Name = "CBBMP";
+            this.CBBMP.Size = new System.Drawing.Size(62, 24);
+            this.CBBMP.TabIndex = 6;
+            this.CBBMP.Text = "BMP";
+            this.CBBMP.UseVisualStyleBackColor = true;
+            // 
+            // CBJPG
+            // 
+            this.CBJPG.AutoSize = true;
+            this.CBJPG.Location = new System.Drawing.Point(475, 18);
+            this.CBJPG.Name = "CBJPG";
+            this.CBJPG.Size = new System.Drawing.Size(59, 24);
+            this.CBJPG.TabIndex = 7;
+            this.CBJPG.Text = "JPG";
+            this.CBJPG.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 313);
-            this.Controls.Add(this.LBPixel);
-            this.Controls.Add(this.LBPalette);
-            this.Controls.Add(this.PBPixel);
-            this.Controls.Add(this.PBPalette);
-            this.Controls.Add(this.BTNVerifica);
+            this.ClientSize = new System.Drawing.Size(1069, 545);
+            this.Controls.Add(this.CBJPG);
+            this.Controls.Add(this.CBBMP);
+            this.Controls.Add(this.BTNAggiungiCartella);
+            this.Controls.Add(this.CBPNG);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CBNames);
+            this.Controls.Add(this.BTNSelezionaCartella);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.PBPalette)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBPixel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,11 +130,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button BTNVerifica;
-        private System.Windows.Forms.PictureBox PBPalette;
-        private System.Windows.Forms.PictureBox PBPixel;
-        private System.Windows.Forms.Label LBPalette;
-        private System.Windows.Forms.Label LBPixel;
+        private System.Windows.Forms.Button BTNSelezionaCartella;
+        private System.Windows.Forms.ComboBox CBNames;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox CBPNG;
+        private System.Windows.Forms.Button BTNAggiungiCartella;
+        private System.Windows.Forms.CheckBox CBBMP;
+        private System.Windows.Forms.CheckBox CBJPG;
     }
 }
 
