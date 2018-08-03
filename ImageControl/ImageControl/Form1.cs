@@ -20,18 +20,20 @@ namespace ImageControl
 
         private void BTNSelezionaCartella_Click(object sender, EventArgs e)
         {
-            var extensions = new List<Extension>();
-            var ok = Funzioni.GetExtensions(CBPNG, CBJPG, CBBMP, extensions);
+            Data.extensions.Clear();
+            var ok = Funzioni.GetExtensions(CBPNG, CBJPG, CBBMP);
             if (!ok) { MessageBox.Show("Errore, selezionare almeno un'estenzione", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            Funzioni.SelectFolder(CBNames, extensions, false);
+            Funzioni.SelectFolder(CBNames, false);
+            Funzioni.AddNames(CBNames);
         }
 
         private void BTNAggiungiCartella_Click(object sender, EventArgs e)
         {
-            var extensions = new List<Extension>();
-            var ok = Funzioni.GetExtensions(CBPNG, CBJPG, CBBMP, extensions);
+            Data.extensions.Clear();
+            var ok = Funzioni.GetExtensions(CBPNG, CBJPG, CBBMP);
             if (!ok) { MessageBox.Show("Errore, selezionare almeno un'estenzione", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            Funzioni.SelectFolder(CBNames, extensions, true);
+            Funzioni.SelectFolder(CBNames, true);
+            Funzioni.AddNames(CBNames);
         }
     }
 }
