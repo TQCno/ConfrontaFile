@@ -23,7 +23,7 @@ namespace ImageControl
             Data.extensions.Clear();
             var ok = Funzioni.GetExtensions(CBPNG, CBJPG, CBBMP);
             if (!ok) { MessageBox.Show("Errore, selezionare almeno un'estenzione", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            Funzioni.SelectFolder(CBNames, false);
+            Funzioni.SelectFolder(CBNames, true);
             Funzioni.AddNames(CBNames);
         }
 
@@ -32,8 +32,19 @@ namespace ImageControl
             Data.extensions.Clear();
             var ok = Funzioni.GetExtensions(CBPNG, CBJPG, CBBMP);
             if (!ok) { MessageBox.Show("Errore, selezionare almeno un'estenzione", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            Funzioni.SelectFolder(CBNames, true);
+            Funzioni.SelectFolder(CBNames, false);
             Funzioni.AddNames(CBNames);
+        }
+
+        private void BTNCompare_Click(object sender, EventArgs e)
+        {
+            if (Data.FolderPaths.Count < 1) { MessageBox.Show("Selezionare almeno una cartella"); return; }
+
+            var ce = new CompareElements(Data.FolderPaths);
+
+            var copies = ce.GetEquals(PB1, PB2);
+
+            MessageBox.Show(copies.Count + " elementi duplicato/i");
         }
     }
 }

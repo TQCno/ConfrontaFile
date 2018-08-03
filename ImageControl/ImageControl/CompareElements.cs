@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace ImageControl
 {
@@ -21,22 +22,28 @@ namespace ImageControl
             }
         }
 
-        public List<EqualElements> GetEquals()
+        public List<EqualElements> GetEquals(PictureBox pb1, PictureBox pb2)
         {
             var equals = new List<EqualElements>();
 
             for (int i = 0; i < Paths.Count; i++)
             {
-                var image1 = new Bitmap(Image.FromFile(Paths[i]));
+                Bitmap image1 = ChangeImage(Image.FromFile(Paths[i]), pb1);
                 for (int j = i + 1; j < Paths.Count; j++)
                 {
                     if (IsInList(Paths[j], equals)) { continue; }
-                    var image2 = new Bitmap(Image.FromFile(Paths[j]));
+                    var image2 = ChangeImage(Image.FromFile(Paths[j]), pb2);
                     if (Same(image1, image2)) { equals.Add(new EqualElements(Paths[i], Paths[j])); }
                 }
             }
 
             return equals;
+        }
+
+        private Bitmap ChangeImage(Image image, PictureBox pb1)
+        {
+            pb1.Image = image;
+            return new Bitmap(image);
         }
 
         private bool Same(Bitmap image1, Bitmap image2)

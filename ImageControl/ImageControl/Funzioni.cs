@@ -12,7 +12,7 @@ namespace ImageControl
     class Funzioni
     {
 
-        public static void SelectFolder(ComboBox cb, bool cleatList)
+        public static void SelectFolder(ComboBox cb, bool clearList)
         {
             using (var folderBD = new FolderBrowserDialog())
             {
@@ -20,7 +20,7 @@ namespace ImageControl
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBD.SelectedPath))
                 {
-                    if (cleatList) { Data.FolderPaths.Clear(); }
+                    if (clearList) { Data.FolderPaths.Clear(); }
                     Data.FolderPaths.Add(folderBD.SelectedPath);
                 }
             }

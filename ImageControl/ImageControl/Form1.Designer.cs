@@ -35,6 +35,11 @@
             this.BTNAggiungiCartella = new System.Windows.Forms.Button();
             this.CBBMP = new System.Windows.Forms.CheckBox();
             this.CBJPG = new System.Windows.Forms.CheckBox();
+            this.PB1 = new System.Windows.Forms.PictureBox();
+            this.PB2 = new System.Windows.Forms.PictureBox();
+            this.BTNCompare = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.PB1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB2)).BeginInit();
             this.SuspendLayout();
             // 
             // BTNSelezionaCartella
@@ -107,11 +112,44 @@
             this.CBJPG.Text = "JPG";
             this.CBJPG.UseVisualStyleBackColor = true;
             // 
+            // PB1
+            // 
+            this.PB1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.PB1.Location = new System.Drawing.Point(32, 120);
+            this.PB1.Name = "PB1";
+            this.PB1.Size = new System.Drawing.Size(250, 250);
+            this.PB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.PB1.TabIndex = 8;
+            this.PB1.TabStop = false;
+            // 
+            // PB2
+            // 
+            this.PB2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.PB2.Location = new System.Drawing.Point(620, 120);
+            this.PB2.Name = "PB2";
+            this.PB2.Size = new System.Drawing.Size(250, 250);
+            this.PB2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.PB2.TabIndex = 9;
+            this.PB2.TabStop = false;
+            // 
+            // BTNCompare
+            // 
+            this.BTNCompare.Location = new System.Drawing.Point(829, 396);
+            this.BTNCompare.Name = "BTNCompare";
+            this.BTNCompare.Size = new System.Drawing.Size(115, 52);
+            this.BTNCompare.TabIndex = 10;
+            this.BTNCompare.Text = "Compara";
+            this.BTNCompare.UseVisualStyleBackColor = true;
+            this.BTNCompare.Click += new System.EventHandler(this.BTNCompare_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 545);
+            this.ClientSize = new System.Drawing.Size(956, 460);
+            this.Controls.Add(this.BTNCompare);
+            this.Controls.Add(this.PB2);
+            this.Controls.Add(this.PB1);
             this.Controls.Add(this.CBJPG);
             this.Controls.Add(this.CBBMP);
             this.Controls.Add(this.BTNAggiungiCartella);
@@ -123,6 +161,8 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.PB1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,6 +177,9 @@
         private System.Windows.Forms.Button BTNAggiungiCartella;
         private System.Windows.Forms.CheckBox CBBMP;
         private System.Windows.Forms.CheckBox CBJPG;
+        private System.Windows.Forms.PictureBox PB1;
+        private System.Windows.Forms.PictureBox PB2;
+        private System.Windows.Forms.Button BTNCompare;
     }
 }
 
