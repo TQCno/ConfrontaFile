@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Le informazioni generali relative a un assembly sono controllate dal seguente 
 // set di attributi. Modificare i valori di questi attributi per modificare le informazioni
 // associate a un assembly.
-[assembly: AssemblyTitle("ImageControl")]
+[assembly: AssemblyTitle("ConfrontaFile")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ImageControl")]
+[assembly: AssemblyProduct("ConfrontaFile")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Se il progetto viene esposto a COM, il GUID seguente verrà utilizzato come ID della libreria dei tipi
-[assembly: Guid("aec4e5ce-6224-43e1-a4c4-fef169f0fb96")]
+[assembly: Guid("e7bc2569-35f4-49d6-a045-d6977dc8a779")]
 
 // Le informazioni sulla versione di un assembly sono costituite dai seguenti quattro valori:
 //

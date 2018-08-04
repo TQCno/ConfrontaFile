@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ImageControl.Properties
+namespace ConfrontaFile.Properties
 {
 
 
