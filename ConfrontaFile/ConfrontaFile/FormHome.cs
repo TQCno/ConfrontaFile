@@ -17,10 +17,20 @@ namespace ConfrontaFile
             InitializeComponent();
         }
 
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            BTNEliminaDuplicati.Enabled = Dati.Coppie.Count > 1;
+        }
+
         private void BTNConfronta_Click(object sender, EventArgs e)
         {
-            var duplicati = Funzioni.ConfrontaCartella(progressBar1);
-           
+            (new FormSceltaCartella()).ShowDialog();
+            /*
+            Dati.coppie = Funzioni.ConfrontaCartella(progressBar1);
+            BTNEliminaDuplicati.Enabled = Dati.coppie.Count > 1;
+            */
         }
+
     }
 }

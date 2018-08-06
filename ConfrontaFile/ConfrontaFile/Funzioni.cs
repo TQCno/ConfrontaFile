@@ -11,55 +11,129 @@ namespace ConfrontaFile
 {
     class Funzioni
     {
-        private static bool FilesAreEqual(string file1, string file2)
+        private static bool UguaglianzaFile(string percorsoFile1, string percorsoFile2)
         {
-            return new FileInfo(file1).Length == new FileInfo(file2).Length &&
-         File.ReadAllBytes(file1).SequenceEqual(File.ReadAllBytes(file2));
+            var c1 = new FileInfo(percorsoFile1).Length == new FileInfo(percorsoFile2).Length;
+            if (!c1) { return false; }
+            return File.ReadAllBytes(percorsoFile1).SequenceEqual(File.ReadAllBytes(percorsoFile2));
         }
 
-        private static string ScegliCartella()
+        public static bool ScegliCartella(ref string @base)
         {
-            var percorso = "";
-
             using (var folderBD = new FolderBrowserDialog())
             {
                 DialogResult result = folderBD.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBD.SelectedPath))
-                    percorso = folderBD.SelectedPath;
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBD.SelectedPath)) { @base = folderBD.SelectedPath; return true; }
+                else { return false; }
             }
-
-            return percorso;
         }
 
-        public static List<string> ConfrontaCartella(ProgressBar pb)
+        public static List<string> CercaFileValidi(string percorsoCartella)
         {
-            var percorso = ScegliCartella();
-            var files = Directory.GetFiles(percorso);
-            var trovato = false; var uguali = false;
-            var duplicati = new List<string>();
-            var watch = Stopwatch.StartNew();
+            var percorsiFiles = Directory.GetFiles(percorsoCartella).ToList();
+            int i = 0;
 
-            pb.Maximum = files.Length * files.Length;
-
-            for (int i = 0; i < files.Length; i++)
+            while (i < percorsiFiles.Count)
             {
-                for (int j = i + 1; j < files.Length; j++)
+                bool immaigni = Dati.Immagini && Dati.ImmaginiExt.Count > 0;
+                bool video = Dati.Video && Dati.VideoExt.Count > 0;
+                bool altro = Dati.Altro && Dati.AltroExt.Count > 0;
+
+                var appo = percorsiFiles[i];
+
+                if (immaigni) { immaigni = Contiene(Dati.ImmaginiExt, percorsiFiles[i]); }
+                if (video) { video = Contiene(Dati.VideoExt, percorsiFiles[i]); }
+                if (altro) { video = Contiene(Dati.AltroExt, percorsiFiles[i]); }
+
+                if (!immaigni && !video && !altro) { percorsiFiles.RemoveAt(i); }
+                else { i++; }
+            }
+
+            return percorsiFiles;
+        }
+
+        private static bool Contiene(List<string> estensioni, string percorso)
+        {
+            var estensione2 = Path.GetExtension(percorso);
+            foreach (var estensione in estensioni)
+            {
+                var estensione1 = '.' + estensione;
+                if (estensione1 == estensione2 || estensione1.ToUpper() == estensione2 || estensione1.ToLower() == estensione2) { return true; }
+            }
+            return false;
+        }
+
+        public static List<Duplicato> CercaFileDuplicati(ProgressBar pb)
+        {
+            var duplicati = new List<Duplicato>();
+            pb.Visible = true;
+            pb.Maximum = Dati.PercorsiFile.Count * Dati.PercorsiFile.Count;
+
+            for (int i = 0; i < Dati.PercorsiFile.Count - 1; i++)
+            {
+                pb.Value = Dati.PercorsiFile.Count * i;
+                if (Duplicato.CercaInCopie(duplicati, Dati.PercorsiFile[i])) { continue; }
+                for (int j = i + 1; j < Dati.PercorsiFile.Count; j++)
                 {
-                    pb.Value = i * files.Length + j;
-
-                    trovato = false;
-                    for (int k = 0; k < duplicati.Count; k++) { if (duplicati[k] == files[j]) { trovato = false; break; } }
-                    if (trovato) { continue; }
-
-                    uguali = FilesAreEqual(files[i], files[j]);
-                    if (uguali) { duplicati.Add(files[j]); }
+                    pb.Value = Dati.PercorsiFile.Count * i + j;
+                    if (!StessoTipoDiEstensione(Dati.PercorsiFile[i], Dati.PercorsiFile[j])) { continue; }
+                    if (Duplicato.CercaInCopie(duplicati, Dati.PercorsiFile[j])) { continue; }
+                    if (UguaglianzaFile(Dati.PercorsiFile[i], Dati.PercorsiFile[j]))
+                    {
+                        int k = 0;
+                        if (Duplicato.CercaInPrincipale(duplicati, Dati.PercorsiFile[i], out k)) { duplicati[k].Copie.Add(Dati.PercorsiFile[j]); }
+                        else { duplicati.Add(new Duplicato(Dati.PercorsiFile[i], new List<string>() { Dati.PercorsiFile[j] })); }
+                    }
                 }
             }
-            watch.Stop();
-            MessageBox.Show(duplicati.Count + " file duplicati in " + watch.Elapsed.TotalSeconds + " s");
 
+            pb.Visible = false;
             return duplicati;
         }
+
+        private static bool StessoTipoDiEstensione(string percorsoFile1, string percorsoFile2)
+        {
+            if (Contiene(Dati.ImmaginiExt, percorsoFile1) && Contiene(Dati.ImmaginiExt, percorsoFile2)) { return true; }
+            if (Contiene(Dati.VideoExt, percorsoFile1) && Contiene(Dati.VideoExt, percorsoFile2)) { return true; }
+            if (Contiene(Dati.AltroExt, percorsoFile1) && Contiene(Dati.AltroExt, percorsoFile2)) { return true; }
+            return false;
+        }
+
+
+        /*
+    public static List<Coppia> ConfrontaCartella(ProgressBar pb)
+    {
+    var percorso = ScegliCartella();
+    var files = Directory.GetFiles(percorso);
+    var trovato = false; var uguali = false;
+    var coppie = new List<Coppia>();
+    var watch = Stopwatch.StartNew();
+
+    pb.Maximum = files.Length * files.Length;
+
+    for (int i = 0; i < files.Length; i++)
+    {
+       for (int j = i + 1; j < files.Length; j++)
+       {
+           pb.Value = i * files.Length + j;
+
+           trovato = false;
+           for (int k = 0; k < coppie.Count; k++) { if (coppie[k].Copy == files[j]) { trovato = false; break; } }
+           if (trovato) { continue; }
+
+           uguali = FilesAreEqual(files[i], files[j]);
+           if (uguali)
+           {
+               var nuovaCoppia = new Coppia(files[i], files[j]);
+               coppie.Add(nuovaCoppia);
+           }
+       }
+    }
+    watch.Stop();
+    MessageBox.Show(coppie.Count + " file duplicati in " + watch.Elapsed.TotalSeconds + " s");
+
+    return coppie;
+    }
+    */
     }
 }

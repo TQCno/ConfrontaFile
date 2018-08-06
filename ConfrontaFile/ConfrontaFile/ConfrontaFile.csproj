@@ -45,17 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Duplicati.cs" />
+    <Compile Include="Dati.cs" />
+    <Compile Include="FormHome.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+      <DependentUpon>FormHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSceltaCartella.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSceltaCartella.Designer.cs">
+      <DependentUpon>FormSceltaCartella.cs</DependentUpon>
     </Compile>
     <Compile Include="Funzioni.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+      <DependentUpon>FormHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSceltaCartella.resx">
+      <DependentUpon>FormSceltaCartella.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
