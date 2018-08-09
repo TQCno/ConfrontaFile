@@ -44,7 +44,7 @@
             // TXBPercorso
             // 
             this.TXBPercorso.Location = new System.Drawing.Point(14, 14);
-            this.TXBPercorso.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.TXBPercorso.Margin = new System.Windows.Forms.Padding(5);
             this.TXBPercorso.Name = "TXBPercorso";
             this.TXBPercorso.ReadOnly = true;
             this.TXBPercorso.Size = new System.Drawing.Size(531, 26);
@@ -101,6 +101,7 @@
             this.BTNImmaginiExt.Size = new System.Drawing.Size(25, 23);
             this.BTNImmaginiExt.TabIndex = 5;
             this.BTNImmaginiExt.UseVisualStyleBackColor = true;
+            this.BTNImmaginiExt.Click += new System.EventHandler(this.BTNImmaginiExt_Click);
             // 
             // BTNVideoExt
             // 
@@ -109,6 +110,7 @@
             this.BTNVideoExt.Size = new System.Drawing.Size(25, 23);
             this.BTNVideoExt.TabIndex = 6;
             this.BTNVideoExt.UseVisualStyleBackColor = true;
+            this.BTNVideoExt.Click += new System.EventHandler(this.BTNVideoExt_Click);
             // 
             // BTNCerca
             // 
@@ -127,12 +129,11 @@
             this.BTNAltroExt.Size = new System.Drawing.Size(25, 23);
             this.BTNAltroExt.TabIndex = 9;
             this.BTNAltroExt.UseVisualStyleBackColor = true;
+            this.BTNAltroExt.Click += new System.EventHandler(this.BTNAltroExt_Click);
             // 
             // CBAltro
             // 
             this.CBAltro.AutoSize = true;
-            this.CBAltro.Checked = true;
-            this.CBAltro.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CBAltro.Location = new System.Drawing.Point(14, 137);
             this.CBAltro.Name = "CBAltro";
             this.CBAltro.Size = new System.Drawing.Size(61, 24);
@@ -168,7 +169,7 @@
             this.Controls.Add(this.BTNScegliCartella);
             this.Controls.Add(this.TXBPercorso);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FormSceltaCartella";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormSceltaCartella";

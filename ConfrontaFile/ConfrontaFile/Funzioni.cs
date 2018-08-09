@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace ConfrontaFile
 {
@@ -99,41 +100,33 @@ namespace ConfrontaFile
             return false;
         }
 
+        public static bool ControlloEstensione(string estensione)
+        {
+            return Regex.IsMatch(estensione, @"^(?=[a-zA-Z])[-\w.]{0,23}([a-zA-Z\d]|(?<![-.])_)$");
+        }
 
-        /*
-    public static List<Coppia> ConfrontaCartella(ProgressBar pb)
-    {
-    var percorso = ScegliCartella();
-    var files = Directory.GetFiles(percorso);
-    var trovato = false; var uguali = false;
-    var coppie = new List<Coppia>();
-    var watch = Stopwatch.StartNew();
+        public static void AggiornaComboBox(ComboBox cb, List<string> list, int index)
+        {
+            cb.Text = "";
+            cb.Items.Clear();
+            if (list.Count == 0) { return; }
+            if (index < 0) { index = 0; }
+            if (index >= list.Count) { index = list.Count - 1; }
+            cb.Items.AddRange(list.ToArray());
+            cb.SelectedIndex = index;
+        }
 
-    pb.Maximum = files.Length * files.Length;
+        public static bool CercaInLista(List<string> estensioni, string estensione)
+        {
+            foreach (var ext in estensioni) { if (estensione == ext) { return true; } }
+            return false;
+        }
 
-    for (int i = 0; i < files.Length; i++)
-    {
-       for (int j = i + 1; j < files.Length; j++)
-       {
-           pb.Value = i * files.Length + j;
-
-           trovato = false;
-           for (int k = 0; k < coppie.Count; k++) { if (coppie[k].Copy == files[j]) { trovato = false; break; } }
-           if (trovato) { continue; }
-
-           uguali = FilesAreEqual(files[i], files[j]);
-           if (uguali)
-           {
-               var nuovaCoppia = new Coppia(files[i], files[j]);
-               coppie.Add(nuovaCoppia);
-           }
-       }
-    }
-    watch.Stop();
-    MessageBox.Show(coppie.Count + " file duplicati in " + watch.Elapsed.TotalSeconds + " s");
-
-    return coppie;
-    }
-    */
+        public static void CopiaLista(List<string> modificaExt, List<string> estensioni)
+        {
+            estensioni.Clear();
+            foreach (var estensione in Dati.ModificaExt) { Dati.ImmaginiExt.Add(estensione); }
+            modificaExt.Clear();
+        }
     }
 }

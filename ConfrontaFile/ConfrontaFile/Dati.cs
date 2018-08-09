@@ -12,6 +12,8 @@ namespace ConfrontaFile
         public static List<string> VideoExt = new List<string>() { "mp4" };
         public static List<string> AltroExt = new List<string>() { };
 
+        public static List<string> ModificaExt = new List<string>() { };
+
         public static bool Immagini = true;
         public static bool Video = true;
         public static bool Altro = true;
