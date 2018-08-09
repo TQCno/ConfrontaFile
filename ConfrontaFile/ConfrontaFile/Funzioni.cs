@@ -121,12 +121,5 @@ namespace ConfrontaFile
             foreach (var ext in estensioni) { if (estensione == ext) { return true; } }
             return false;
         }
-
-        public static void CopiaLista(List<string> modificaExt, List<string> estensioni)
-        {
-            estensioni.Clear();
-            foreach (var estensione in Dati.ModificaExt) { Dati.ImmaginiExt.Add(estensione); }
-            modificaExt.Clear();
-        }
     }
 }

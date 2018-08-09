@@ -57,21 +57,18 @@ namespace ConfrontaFile
         {
             Dati.ModificaExt = Dati.ImmaginiExt;
             new FormModificazioneEstensioni().ShowDialog();
-            Funzioni.CopiaLista(Dati.ModificaExt, Dati.ImmaginiExt);
         }
 
         private void BTNVideoExt_Click(object sender, EventArgs e)
         {
             Dati.ModificaExt = Dati.VideoExt;
             new FormModificazioneEstensioni().ShowDialog();
-            Funzioni.CopiaLista(Dati.ModificaExt, Dati.VideoExt);
         }
 
         private void BTNAltroExt_Click(object sender, EventArgs e)
         {
             Dati.ModificaExt = Dati.AltroExt;
             new FormModificazioneEstensioni().ShowDialog();
-            Funzioni.CopiaLista(Dati.ModificaExt, Dati.AltroExt);
         }
     }
 }
