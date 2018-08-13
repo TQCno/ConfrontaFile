@@ -38,6 +38,7 @@ namespace ConfrontaFile
         private void BTNCerca_Click(object sender, EventArgs e)
         {
             Dati.Coppie = Funzioni.CercaFileDuplicati(PB);
+            new FormScegliFileDaEliminare().ShowDialog();
         }
 
         private void CBImmagini_CheckedChanged(object sender, EventArgs e)

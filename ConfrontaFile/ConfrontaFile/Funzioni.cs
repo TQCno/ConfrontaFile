@@ -7,6 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace ConfrontaFile
 {
@@ -18,6 +19,8 @@ namespace ConfrontaFile
             if (!c1) { return false; }
             return File.ReadAllBytes(percorsoFile1).SequenceEqual(File.ReadAllBytes(percorsoFile2));
         }
+
+
 
         public static bool ScegliCartella(ref string @base)
         {
@@ -120,6 +123,43 @@ namespace ConfrontaFile
         {
             foreach (var ext in estensioni) { if (estensione == ext) { return true; } }
             return false;
+        }
+
+        public static void ImpostaPictureBox(PictureBox pBFile1, PictureBox pBFile2, Label lBLNomeFile1, Label lBLNomeFile2, Label lBLNumero)
+        {
+            if (Contiene(Dati.ImmaginiExt, Dati.Coppie[0].Principale))
+                pBFile1.Image = PrendiImmagineDaPercorso(Dati.Coppie[0].Principale);
+            else
+                pBFile1.Image = null;
+
+            if (Contiene(Dati.ImmaginiExt, Dati.Coppie[0].Copie[0]))
+                pBFile2.Image = PrendiImmagineDaPercorso(Dati.Coppie[0].Principale);
+            else
+                pBFile2.Image = null;
+
+            lBLNomeFile1.Text = Path.GetFileName(Dati.Coppie[0].Principale);
+            lBLNomeFile2.Text = Path.GetFileName(Dati.Coppie[0].Copie[0]);
+
+            var appo = lBLNumero.Text.Split(' ');
+
+            lBLNumero.Text = (int.Parse(appo[0]) + 1) + " / " + appo[2];
+        }
+
+        private static Image PrendiImmagineDaPercorso(string percorso)
+        {
+            var buffer = File.ReadAllBytes(percorso);
+            using (var ms = new MemoryStream(buffer, 0, buffer.Length)) { return Image.FromStream(ms, true); }
+        }
+
+        public static bool ImpostaCoppie(List<Duplicato> coppie, Label lBLNumero)
+        {
+            while (coppie[0].Copie.Count == 0)
+            {
+                coppie.RemoveAt(0);
+                lBLNumero.Text = "1 / " + coppie[0].Copie.Count;
+            }
+            if (coppie.Count < 1) { return false; }
+            return true;
         }
     }
 }

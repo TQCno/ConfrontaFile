@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialSkin">
+      <HintPath>..\..\..\..\Pondus\Pondus\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +56,12 @@
     <Compile Include="FormModificazioneEstensioni.Designer.cs">
       <DependentUpon>FormModificazioneEstensioni.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormScegliFileDaEliminare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScegliFileDaEliminare.Designer.cs">
+      <DependentUpon>FormScegliFileDaEliminare.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSceltaCartella.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormModificazioneEstensioni.resx">
       <DependentUpon>FormModificazioneEstensioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScegliFileDaEliminare.resx">
+      <DependentUpon>FormScegliFileDaEliminare.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSceltaCartella.resx">
       <DependentUpon>FormSceltaCartella.cs</DependentUpon>
